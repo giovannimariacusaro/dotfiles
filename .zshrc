@@ -13,7 +13,20 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 CASE_SENSITIVE="true"
 
 # Plugin
-plugins=(git osx yarn zsh-autosuggestions zsh-syntax-highlighting vscode gatsby history emoji)
+plugins=(
+  git
+  npm
+  brew
+  osx
+  yarn
+  fzf
+  z
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  gatsby
+  history
+  emoji
+)
 
 source $ZSH/oh-my-zsh.sh
 
