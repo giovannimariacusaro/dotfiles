@@ -84,17 +84,17 @@ let g:currentmode={
     \}
 
 set statusline=
-set statusline+=\ %n\           				" buffer number
-set statusline+=%0*%{toupper(g:currentmode[mode()])}\ 		" The current mode
+set statusline+=%0*\ %{toupper(g:currentmode[mode()])}\ 	" The current mode
 set statusline+=\ %t\ %R\ %M\ 					" Short name, ReadMode, Modified
-set statusline+=%#Visual#       				" Colour
-set statusline+=\ %Y\						" FileType
+set statusline+=%#Visual#\       				" Colour
+set statusline+=%{''.(&fenc!=''?&fenc:&enc).''}			" Encoding
 set statusline+=%{StatuslineGit()}				" Git
 set statusline+=%=						" Right
-set statusline+=%*\ %{''.(&fenc!=''?&fenc:&enc).''}\ \    	" Encoding
+set statusline+=%*\ %Y\    					" FileType
 set statusline+=\ ☰\ %02l/%L\         				" Line
 set statusline+=\ cl:\%02v\                         		" Column
 set statusline+=\ %3p%%\                			" Percentage
+set statusline+=\ [%n]\           				" buffer number
 
 " --- MAPPING ---
 
