@@ -1,8 +1,7 @@
 " Giovanni Maria Cusaro's .vimrc - Feel free to use!
 
 set nocompatible
-filetype on
-filetype plugin indent on
+filetype on plugin indent on
 syntax on
 
 set nobackup nowritebackup
@@ -112,3 +111,8 @@ endif
 
 " Force saving files that require root permission
 cmap w!! %!sudo tee > /dev/null %
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
+
