@@ -16,8 +16,12 @@ set backspace=indent,eol,start
 set modelines=0
 set nomodeline
 
+if has('mouse_sgr')
+ set ttymouse=sgr
+endif
 set mouse=a
 set title
+set termguicolors
 set number
 set ruler
 set wildmenu
