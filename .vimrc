@@ -1,7 +1,7 @@
 " Giovanni Maria Cusaro's .vimrc - Feel free to use!
 
 set nocompatible
-filetype on plugin indent on
+filetype plugin indent on
 syntax on
 
 set nobackup nowritebackup
