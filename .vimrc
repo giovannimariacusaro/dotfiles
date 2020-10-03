@@ -1,5 +1,13 @@
 " Giovanni Maria Cusaro's .vimrc - Feel free to use!
 
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'itchyny/lightline.vim'
+Plug 'fenetikm/falcon'
+call plug#end()
+
 set nocompatible
 filetype plugin indent on
 syntax on
@@ -42,8 +50,6 @@ set noemoji
 set wrap
 set linebreak
 set nolist
-set showcmd
-
 set splitbelow splitright
 
 set hlsearch
@@ -51,60 +57,54 @@ set ignorecase
 set incsearch
 set hls is
 
-" --- STATUS LINE ---
 
+" --- LIGHTLINE ---
+
+set termguicolors
 set laststatus=2
 set noshowmode
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+if !has('gui_running')
+  set t_Co=256
+endif
+
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename'] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ },
+      \ }
+
+let g:falcon_lightline = 1
+let g:lightline.colorscheme = 'falcon'
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
 endfunction
 
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
 
-let g:currentmode={
-    \ 'n'  : 'Normal',
-    \ 'no' : 'Normal·Operator Pending',
-    \ 'v'  : 'Visual',
-    \ 'V'  : 'V·Line',
-    \ '^V' : 'V·Block',
-    \ 's'  : 'Select',
-    \ 'S'  : 'S·Line',
-    \ '^S' : 'S·Block',
-    \ 'i'  : 'Insert',
-    \ 'R'  : 'Replace',
-    \ 'Rv' : 'V·Replace',
-    \ 'c'  : 'Command',
-    \ 'cv' : 'Vim Ex',
-    \ 'ce' : 'Ex',
-    \ 'r'  : 'Prompt',
-    \ 'rm' : 'More',
-    \ 'r?' : 'Confirm',
-    \ '!'  : 'Shell',
-    \ 't'  : 'Terminal'
-    \}
+" --- THEME ---
 
-set statusline=
-set statusline+=%0*\ %{toupper(g:currentmode[mode()])}\ 	" The current mode
-set statusline+=\ %t\ %R\ %M\ 					" Short name, ReadMode, Modified
-set statusline+=%#Visual#\       				" Colour
-set statusline+=%{''.(&fenc!=''?&fenc:&enc).''}			" Encoding
-set statusline+=%{StatuslineGit()}				" Git
-set statusline+=%=						" Right
-set statusline+=%*\ %Y\    					" FileType
-set statusline+=\ ☰\ %02l/%L\         				" Line
-set statusline+=\ cl:\%02v\                         		" Column
-set statusline+=\ %3p%%\                			" Percentage
-set statusline+=\ [%n]\           				" buffer number
+" Falcon
+let g:falcon_lightline = 1
+let g:lightline.colorscheme = 'falcon'
+colorscheme falcon
+
 
 " --- MAPPING ---
 
 " Prev/Next Tab
 nnoremap <silent> <C-k> : tabnext<CR>
 nnoremap <silent> <C-j> : tabprev<CR>
+
 
 " --- MISC ---
 
@@ -118,5 +118,4 @@ cmap w!! %!sudo tee > /dev/null %
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
-
 

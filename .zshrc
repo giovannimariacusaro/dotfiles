@@ -1,40 +1,43 @@
 # Giovanni Maria Cusaro's .zshrc - Feel free to use!
 
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/giovanni/.oh-my-zsh"
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh installation.
+# Path to your oh-my-zsh installation
 export ZSH="/Users/giovanni/.oh-my-zsh"
 
+# Auto-update
+export UPDATE_ZSH_DAYS=7
+
+# Set colors
+export TERM=xterm-256color
+
 # Theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 CASE_SENSITIVE="true"
 
 # Plugin
 plugins=(
   git
-  npm
-  brew
   osx
   yarn
-  fzf
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
   gatsby
-  history
   emoji
 )
 
-source $ZSH/oh-my-zsh.sh
-
-# Alias
-alias m="mkdir"
+# Generic aliases
+alias ohmyzsh="open ~/.oh-my-zsh"
+alias zshconf="open ~/.zshrc"
 alias t="touch"
+alias m="mkdir"
+alias lsh="ls -ld .?*"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias tr="tree"
