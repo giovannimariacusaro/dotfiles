@@ -12,6 +12,7 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
+set timeoutlen=1000 ttimeoutlen=0
 set nobackup nowritebackup
 set encoding=utf-8
 set autoread
@@ -118,4 +119,3 @@ cmap w!! %!sudo tee > /dev/null %
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
-

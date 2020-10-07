@@ -1,43 +1,58 @@
 # Giovanni Maria Cusaro's .zshrc - Feel free to use!
 
+
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/giovanni/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Path to your oh-my-zsh installation
-export ZSH="/Users/giovanni/.oh-my-zsh"
-
-# Auto-update
-export UPDATE_ZSH_DAYS=7
-
-# Set colors
-export TERM=xterm-256color
-
-# Theme
+# Set name of the theme to load.
 ZSH_THEME="robbyrussell"
 
-CASE_SENSITIVE="true"
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="dd/mm/yyyy"
 
-# Plugin
-plugins=(
-  git
-  osx
-  yarn
-  z
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  gatsby
-  emoji
-)
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+plugins=(git osx ruby yarn z zsh-autosuggestions zsh-syntax-highlighting gatsby emoji)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+export PATH="bin:.:~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# 10ms for key sequences
+KEYTIMEOUT=1
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Generic aliases
-alias ohmyzsh="open ~/.oh-my-zsh"
+alias ohmyconf="open ~/.oh-my-zsh"
 alias zshconf="open ~/.zshrc"
+alias vimconf="open ~/.vimrc"
 alias t="touch"
 alias m="mkdir"
 alias lsh="ls -ld .?*"
+alias update="brew cu"
 
 alias tr="tree"
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="bin:$PATH"
+export EDITOR="$HOME/bin/mate -w"
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
