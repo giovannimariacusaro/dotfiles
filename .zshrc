@@ -15,7 +15,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(git osx ruby yarn z zsh-autosuggestions zsh-syntax-highlighting gatsby emoji)
+plugins=(git osx ruby yarn z zsh_reload zsh-autosuggestions zsh-syntax-highlighting gatsby emoji)
 
 source $ZSH/oh-my-zsh.sh
 
