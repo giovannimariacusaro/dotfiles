@@ -21,6 +21,8 @@ set hidden
 set confirm
 set history=30
 set backspace=indent,eol,start
+set complete-=i
+set nrformats-=octal
 
 set modelines=0
 set nomodeline
@@ -34,6 +36,9 @@ set termguicolors
 set number
 set ruler
 set wildmenu
+set scrolloff=1
+set sidescrolloff=5
+set display+=lastline
 set belloff=all
 
 set expandtab
@@ -44,11 +49,14 @@ set smartindent
 set softtabstop=2
 set tabstop=2
 set et|retab
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
 set colorcolumn=100
 set textwidth=80
 set showmatch
 set noemoji
-set wrap
+set nowrap
 set linebreak
 set nolist
 set splitbelow splitright
