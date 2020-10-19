@@ -1,5 +1,7 @@
 # Giovanni Maria Cusaro's .zshrc - Feel free to use!
 
+# First turn off all beeps
+unsetopt BEEP
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
