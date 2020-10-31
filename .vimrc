@@ -13,10 +13,12 @@ filetype plugin indent on
 syntax on
 
 set timeoutlen=1000 ttimeoutlen=0
+set noswapfile
 set nobackup nowritebackup
 set encoding=utf-8
 set autoread
 set autowrite
+set undofile
 set hidden
 set confirm
 set history=30
@@ -46,8 +48,7 @@ set smarttab
 set autoindent
 set shiftwidth=2
 set smartindent
-set softtabstop=2
-set tabstop=2
+set softtabstop=2 tabstop=2
 set et|retab
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
