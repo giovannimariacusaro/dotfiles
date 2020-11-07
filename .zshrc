@@ -10,13 +10,11 @@ export LANG=en_US.UTF-8
 export UPDATE_ZSH_DAYS=7
 export TERM=xterm-256color
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 HIST_STAMPS="dd/mm/yyyy"
 
 ENABLE_CORRECTION="true"
-
-ZSH_DISABLE_COMPFIX="true"
 
 # my personal list
 plugins=(git osx ruby yarn z zsh_reload zsh-autosuggestions zsh-syntax-highlighting gatsby emoji brew)
@@ -28,11 +26,12 @@ export PATH="bin:.:~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$
 
 export EDITOR="$HOME/bin/mate -w"
 
-KEYTIMEOUT=0.2
+KEYTIMEOUT=0
 
 # Custom PROMPT
-PROMPT='%. \$ '
-unsetopt PROMPT_SP
+autoload -U promptinit; promptinit
+prompt pure
+PROMPT='%(?.%F{cyan}.%F{red}❯%F{magenta})▲%f '
 
 # Custom highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
