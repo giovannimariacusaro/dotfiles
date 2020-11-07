@@ -16,6 +16,8 @@ HIST_STAMPS="dd/mm/yyyy"
 
 ENABLE_CORRECTION="true"
 
+ZSH_DISABLE_COMPFIX="true"
+
 # my personal list
 plugins=(git osx ruby yarn z zsh_reload zsh-autosuggestions zsh-syntax-highlighting gatsby emoji brew)
 
@@ -26,7 +28,7 @@ export PATH="bin:.:~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$
 
 export EDITOR="$HOME/bin/mate -w"
 
-KEYTIMEOUT=0
+KEYTIMEOUT=0.2
 
 # Custom PROMPT
 PROMPT='%. \$ '
