@@ -50,8 +50,10 @@ alias t="touch"
 alias m="mkdir"
 alias lsh="ls -ld .?*"
 alias update="brew cu"
-
 alias tr="tree"
+
+PROMPT='%. '
+unsetopt PROMPT_SP
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="bin:$PATH"
