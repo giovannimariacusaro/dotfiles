@@ -3,8 +3,9 @@
 This is where my dotfiles live.
 
 Settings for:
-- Vim/nvim (text editor)
+- Vim (editor)
 - Zsh (shell)
+- [Hyper](https://hyper.is)
 
 ## Warning
 
