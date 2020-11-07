@@ -3,9 +3,23 @@
 This is where my dotfiles live.
 
 Settings for:
+
 - Vim (editor)
 - Zsh (shell)
 - [Hyper](https://hyper.is)
+
+---
+
+## Install
+
+```sh
+git clone --depth=1 https://github.com/giovannimariacusaro/dotfiles
+cp -r ./dotfiles/.zshrc ~/
+cp -r ./dotfiles/.vimrc ~/
+cp -r ./dotfiles/.hyper.js ~/
+cp -r ./dotfiles/.hushlogin ~/
+rm -rf ./dotfiles/
+```
 
 ## Warning
 
