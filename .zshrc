@@ -16,6 +16,8 @@ HIST_STAMPS="dd/mm/yyyy"
 
 ENABLE_CORRECTION="true"
 
+ZSH_DISABLE_COMPFIX="true"
+
 # my personal list
 plugins=(git osx ruby yarn z zsh_reload zsh-autosuggestions zsh-syntax-highlighting gatsby emoji brew)
 
