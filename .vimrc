@@ -25,6 +25,7 @@ set history=30
 set backspace=indent,eol,start
 set complete-=i
 set nrformats-=octal
+set clipboard=unnamed
 
 set modelines=0
 set nomodeline
