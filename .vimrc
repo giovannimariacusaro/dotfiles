@@ -11,6 +11,7 @@ call plug#end()
 set nocompatible
 filetype plugin indent on
 syntax on
+set clipboard=unnamed
 
 set timeoutlen=1000 ttimeoutlen=0
 set noswapfile
@@ -25,7 +26,6 @@ set history=30
 set backspace=indent,eol,start
 set complete-=i
 set nrformats-=octal
-set clipboard=unnamed
 
 set modelines=0
 set nomodeline
@@ -54,11 +54,8 @@ set et|retab
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
-set colorcolumn=100
-set textwidth=80
 set showmatch
 set noemoji
-set nowrap
 set linebreak
 set nolist
 set splitbelow splitright
