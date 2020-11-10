@@ -11,7 +11,7 @@ module.exports = {
 		fontSize: 12,
 
 		fontFamily:
-			'"Fira Code", "SF Mono", Monaco, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+			'"Fira Code", "SF Mono", Monaco, monospace',
 
 		fontWeight: 'normal',
 
