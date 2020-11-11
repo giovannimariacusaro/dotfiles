@@ -20,8 +20,6 @@ set undofile
 set hidden
 set confirm
 set backspace=indent,eol,start
-set complete-=i
-set nrformats-=octal
 
 set modelines=0
 set nomodeline
@@ -57,7 +55,6 @@ set ignorecase
 set incsearch
 set hls is
 
-
 " --- LIGHTLINE ---
 
 set termguicolors
@@ -90,21 +87,19 @@ function! LightlineFilename()
   return filename . modified
 endfunction
 
-
 " --- THEME ---
 
-" Falcon
 let g:falcon_lightline = 1
 let g:lightline.colorscheme = 'falcon'
 colorscheme falcon
 
-
 " --- MAPPING ---
+
+inoremap jk <ESC>
 
 " Prev/Next Tab
 nnoremap <silent> <C-k> : tabnext<CR>
 nnoremap <silent> <C-j> : tabprev<CR>
-
 
 " --- MISC ---
 
