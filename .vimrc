@@ -2,8 +2,6 @@
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'itchyny/lightline.vim'
 Plug 'fenetikm/falcon'
 call plug#end()
@@ -18,11 +16,9 @@ set noswapfile
 set nobackup nowritebackup
 set encoding=utf-8
 set autoread
-set autowrite
 set undofile
 set hidden
 set confirm
-set history=30
 set backspace=indent,eol,start
 set complete-=i
 set nrformats-=octal
@@ -30,20 +26,15 @@ set nrformats-=octal
 set modelines=0
 set nomodeline
 
-if has('mouse_sgr')
- set ttymouse=sgr
-endif
 set mouse=a
-set title
-set termguicolors
 set number
 set ruler
 set wildmenu
+set ttyfast
 set scrolloff=1
 set sidescrolloff=5
 set display+=lastline
 set belloff=all
-
 set expandtab
 set smarttab
 set autoindent
@@ -56,6 +47,7 @@ if &listchars ==# 'eol:$'
 endif
 set showmatch
 set noemoji
+set wrap
 set linebreak
 set nolist
 set splitbelow splitright
