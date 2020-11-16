@@ -5,7 +5,7 @@ This is where my dotfiles live.
 Settings for:
 
 - Vim (editor)
-- Zsh (shell)
+- Zsh (shell and Oh My Zsh!)
 - [Hyper](https://hyper.is)
 
 ---
