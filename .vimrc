@@ -16,14 +16,11 @@ set noswapfile
 set nobackup nowritebackup
 set encoding=utf-8
 set autoread
-set undofile
 set hidden
 set confirm
 set backspace=indent,eol,start
-
 set modelines=0
 set nomodeline
-
 set mouse=a
 set number
 set ruler
@@ -49,7 +46,6 @@ set wrap
 set linebreak
 set nolist
 set splitbelow splitright
-
 set hlsearch
 set ignorecase
 set incsearch
