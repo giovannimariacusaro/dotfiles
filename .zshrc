@@ -33,7 +33,7 @@ KEYTIMEOUT=0
 # Custom PROMPT
 autoload -U promptinit; promptinit
 prompt pure
-PROMPT='%(?.%F{cyan}.%F{red}❯%F{magenta})▲%f '
+PROMPT='%(?.%F{cyan}.%F{red}❯%F{red})▲%f '
 
 # Custom highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
