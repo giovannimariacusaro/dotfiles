@@ -1,65 +1,76 @@
-" Giovanni Maria Cusaro's .vimrc - Feel free to use!
+" Giovanni Maria Cusaro's .vimrc - feel free to use!
 
+" ==> PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-markdown'
 Plug 'itchyny/lightline.vim'
 Plug 'fenetikm/falcon'
+Plug 'preservim/nerdtree'
 call plug#end()
 
-set nocompatible
+" ==> GENERAL
 filetype plugin indent on
+set nocompatible
 syntax on
-set clipboard=unnamed
-
-set timeoutlen=1000 ttimeoutlen=0
-set noswapfile
-set nobackup nowritebackup
 set encoding=utf-8
+set complete-=i
+
+set wildmode=longest,list,full
 set autoread
-set hidden
-set confirm
-set backspace=indent,eol,start
+au FocusGained,BufEnter * checktime
+
 set modelines=0
 set nomodeline
-set mouse=a
-set number
-set ruler
+
+set nobackup nowritebackup
+set noswapfile
+
+set clipboard=unnamed
+
+set confirm
+" Force saving files that require root permission
+cmap w!! %!sudo tee > /dev/null %
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
+" ==> USER INTERFACE
+set updatetime=750
+set timeoutlen=1000 ttimeoutlen=0
 set wildmenu
-set ttyfast
-set scrolloff=1
-set sidescrolloff=5
+set showcmd
+set hid
+set mouse=a
+
 set display+=lastline
-set belloff=all
-set expandtab
-set smarttab
-set autoindent
-set shiftwidth=2
-set smartindent
-set softtabstop=2 tabstop=2
-set et|retab
-if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-endif
+set scrolloff=5
+set sidescrolloff=5
+
+set nu
+set ruler
+set ttyfast
+set noerrorbells visualbell t_vb=
+
+set smartcase
+set hls is ic
 set showmatch
-set noemoji
-set wrap
+
+set wrap nolist
 set linebreak
-set nolist
+
+" ==> TAB
 set splitbelow splitright
-set hlsearch
-set ignorecase
-set incsearch
-set hls is
+set smartindent autoindent expandtab
+set shiftwidth=2 softtabstop=2 tabstop=2
+set backspace=indent,eol,start
 
-" --- LIGHTLINE ---
+" ==> THEME
+colorscheme falcon
 
-set termguicolors
+" ==> LIGHTLINE
+set cmdheight=2
 set laststatus=2
 set noshowmode
-
-if !has('gui_running')
-  set t_Co=256
-endif
 
 let g:lightline = {
       \ 'active': {
@@ -74,7 +85,6 @@ let g:lightline = {
       \ },
       \ }
 
-let g:falcon_lightline = 1
 let g:lightline.colorscheme = 'falcon'
 
 function! LightlineFilename()
@@ -83,29 +93,79 @@ function! LightlineFilename()
   return filename . modified
 endfunction
 
-" --- THEME ---
-
-let g:falcon_lightline = 1
-let g:lightline.colorscheme = 'falcon'
-colorscheme falcon
-
-" --- MAPPING ---
-
-inoremap jk <ESC>
-
-" Prev/Next Tab
-nnoremap <silent> <C-k> : tabnext<CR>
-nnoremap <silent> <C-j> : tabprev<CR>
-
-" --- MISC ---
+" ==> MISC
 
 " Jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" Force saving files that require root permission
-cmap w!! %!sudo tee > /dev/null %
+" Toggle wrap mode \w
+let s:wrapenabled = 0
+function! ToggleWrap()
+  set wrap nolist
+  if s:wrapenabled
+    set nolinebreak
+    unmap j
+    unmap k
+    unmap 0
+    unmap ^
+    unmap $
+    let s:wrapenabled = 0
+  else
+    set linebreak
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap 0 g0
+    nnoremap ^ g^
+    nnoremap $ g$
+    vnoremap j gj
+    vnoremap k gk
+    vnoremap 0 g0
+    vnoremap ^ g^
+    vnoremap $ g$
+    let s:wrapenabled = 1
+  endif
+endfunction
+map <leader>w :call ToggleWrap()<CR>
 
-" Remove trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
+" ==> MAPPING
+
+" Esc in insert mode
+inoremap jk <Esc>
+
+" Esc in command mode
+cnoremap kj <C-C>
+
+" Remap split navigation to CTRL + hjkl
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+" Useful mappings for spliting
+nnoremap <leader>v :vsplit<cr>
+nnoremap <leader>h :split<cr>
+
+noremap <silent> <leader>+ :vertical resize +5<CR>
+noremap <silent> <leader>- :vertical resize -5<CR>
+
+" ==> NERDTree
+
+let NERDTreeShowHidden = 1
+let NERDTreeQuitOnOpen = 1
+noremap <C-t> :NERDTreeToggle<CR>
+
+  " Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
