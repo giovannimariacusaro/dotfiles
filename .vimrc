@@ -43,7 +43,7 @@ autocmd BufWritePre * %s/\s\+$//e
 " ==> USER INTERFACE
 set shortmess+=I
 set updatetime=100
-set timeoutlen=1000 ttimeoutlen=0
+set timeout timeoutlen=1000 ttimeoutlen=0
 set wildmenu
 set showcmd
 set hid
