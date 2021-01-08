@@ -1,3 +1,4 @@
+
 " Giovanni Maria Cusaro's .vimrc - feel free to use!
 
 " ==> PLUGINS
@@ -30,7 +31,7 @@ set nomodeline
 set nobackup nowritebackup
 set noswapfile
 
-set clipboard=unnamed
+set clipboard+=unnamed
 
 set confirm
 " Force saving files that require root permission
@@ -160,8 +161,7 @@ nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 " ==> NERDTree
 
 let NERDTreeShowHidden = 1
-"let NERDTreeQuitOnOpen = 1
-noremap <C-t> :NERDTreeToggle<CR>
+noremap <silent> <Leader>n :NERDTreeToggle<CR>
 
   " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
