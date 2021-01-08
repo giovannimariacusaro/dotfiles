@@ -9,11 +9,16 @@ Plug 'preservim/nerdtree'
 call plug#end()
 
 " ==> GENERAL
-filetype plugin indent on
-set nocompatible
-syntax on
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
 set encoding=utf-8
-set complete-=i
+
+set backspace=indent,eol,start
+set complete-=.,t,i
 
 set wildmode=longest,list,full
 set autoread
@@ -35,7 +40,8 @@ cmap w!! %!sudo tee > /dev/null %
 autocmd BufWritePre * %s/\s\+$//e
 
 " ==> USER INTERFACE
-set updatetime=750
+set shortmess+=I
+set updatetime=100
 set timeoutlen=1000 ttimeoutlen=0
 set wildmenu
 set showcmd
@@ -44,7 +50,6 @@ set mouse=a
 
 set display+=lastline
 set scrolloff=5
-set sidescrolloff=5
 
 set nu
 set ruler
@@ -62,7 +67,6 @@ set linebreak
 set splitbelow splitright
 set smartindent autoindent expandtab
 set shiftwidth=2 softtabstop=2 tabstop=2
-set backspace=indent,eol,start
 
 " ==> THEME
 colorscheme falcon
@@ -135,7 +139,7 @@ map <leader>w :call ToggleWrap()<CR>
 inoremap jk <Esc>
 
 " Esc in command mode
-cnoremap kj <C-C>
+cnoremap jk <C-C>
 
 " Remap split navigation to CTRL + hjkl
 noremap <C-h> <C-w>h
@@ -150,10 +154,13 @@ nnoremap <leader>h :split<cr>
 noremap <silent> <leader>+ :vertical resize +5<CR>
 noremap <silent> <leader>- :vertical resize -5<CR>
 
+" Unbind some useless/annoying default key bindings.
+nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
+
 " ==> NERDTree
 
 let NERDTreeShowHidden = 1
-let NERDTreeQuitOnOpen = 1
+"let NERDTreeQuitOnOpen = 1
 noremap <C-t> :NERDTreeToggle<CR>
 
   " Exit Vim if NERDTree is the only window left.
