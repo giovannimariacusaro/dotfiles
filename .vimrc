@@ -1,12 +1,14 @@
-
 " Giovanni Maria Cusaro's .vimrc - feel free to use!
 
 " ==> PLUGINS
+" This config is targeted for Vim 8.0+ with Plug installed
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-markdown'
 Plug 'itchyny/lightline.vim'
 Plug 'fenetikm/falcon'
 Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " ==> GENERAL
@@ -41,6 +43,7 @@ cmap w!! %!sudo tee > /dev/null %
 autocmd BufWritePre * %s/\s\+$//e
 
 " ==> USER INTERFACE
+set guicursor=
 set shortmess+=I
 set updatetime=100
 set timeout timeoutlen=1000 ttimeoutlen=0
@@ -61,7 +64,7 @@ set smartcase
 set hls is ic
 set showmatch
 
-set wrap nolist
+set nolist
 set linebreak
 
 " ==> TAB
@@ -111,6 +114,7 @@ function! ToggleWrap()
   set wrap nolist
   if s:wrapenabled
     set nolinebreak
+    set nowrap
     unmap j
     unmap k
     unmap 0
@@ -119,6 +123,7 @@ function! ToggleWrap()
     let s:wrapenabled = 0
   else
     set linebreak
+    set wrap
     nnoremap j gj
     nnoremap k gk
     nnoremap 0 g0
@@ -155,6 +160,10 @@ nnoremap <leader>h :split<cr>
 noremap <silent> <leader>+ :vertical resize +5<CR>
 noremap <silent> <leader>- :vertical resize -5<CR>
 
+" Toggle 2 split windows horiz/vert
+map <Leader>tv <C-w>t<C-w>H
+map <Leader>th <C-w>t<C-w>K
+
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
@@ -175,4 +184,9 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+" ==> FZF Vim
+
+let g:fzf_layout = { 'down': '40%' }
+nnoremap <C-p> :<C-u>Files<CR>
 
