@@ -6,7 +6,7 @@ Settings for:
 
 - Vim (editor)
 - Zsh (shell and Oh My Zsh!)
-- [Hyper](https://hyper.is)
+- [Hyper](https://hyper.is) terminal
 
 ---
 
