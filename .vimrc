@@ -139,7 +139,6 @@ set list
 map <leader>w :call ToggleWrap()<CR>
 let s:wrapenabled = 0
 function! ToggleWrap()
- " set wrap nolist
   if s:wrapenabled
     highlight ColorColumn ctermbg=magenta
     set nolinebreak
