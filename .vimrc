@@ -1,4 +1,6 @@
+
 " Giovanni Maria Cusaro's .vimrc - feel free to use!
+" Licence -  The code follows GNU License v3.0
 
 " ==> PLUGINS
 " This config is targeted for Vim 8.0+ with Plug installed
@@ -12,45 +14,51 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " ==> GENERAL
+set modelines=0
+set nomodeline
+
+" Convert to Unicode defaults
+setglobal termencoding=utf-8 fileencodings=
+scriptencoding utf-8
+set encoding=utf-8
+autocmd BufNewFile,BufRead  *   try
+autocmd BufNewFile,BufRead  *       set encoding=utf-8
+autocmd BufNewFile,BufRead  *   endtry
+
 if has('autocmd')
   filetype plugin indent on
 endif
+
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
-set encoding=utf-8
 
 set backspace=indent,eol,start
 set complete-=.,t,i
 
+set wildmenu
 set wildmode=longest,list,full
 set autoread
 au FocusGained,BufEnter * checktime
-
-set modelines=0
-set nomodeline
 
 set nobackup nowritebackup
 set noswapfile
 
 set clipboard+=unnamed
 
-set confirm
 " Force saving files that require root permission
 cmap w!! %!sudo tee > /dev/null %
 
-" Remove trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
+set confirm
 
 " ==> USER INTERFACE
 set guicursor=
 set shortmess+=I
 set updatetime=100
 set timeout timeoutlen=1000 ttimeoutlen=0
-set wildmenu
 set showcmd
 set hid
-set mouse=a
+set mouse=nv
 
 set display+=lastline
 set scrolloff=5
@@ -64,8 +72,22 @@ set smartcase
 set hls is ic
 set showmatch
 
-set nolist
-set linebreak
+" Highlight matches when jumping to next
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+function! HLNext (blinktime)
+  set invcursorline
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+  set invcursorline
+  redraw
+endfunction
+
+" Stop highlighting
+nmap <esc><esc> :noh<return>
+
+"set linebreak
 
 " ==> TAB
 set splitbelow splitright
@@ -109,12 +131,20 @@ if has("autocmd")
 endif
 
 " Toggle wrap mode \w
+highlight ColorColumn ctermbg=magenta
+set nolinebreak
+set nowrap
+set list
+
+map <leader>w :call ToggleWrap()<CR>
 let s:wrapenabled = 0
 function! ToggleWrap()
-  set wrap nolist
+ " set wrap nolist
   if s:wrapenabled
+    highlight ColorColumn ctermbg=magenta
     set nolinebreak
     set nowrap
+    set list
     unmap j
     unmap k
     unmap 0
@@ -122,8 +152,10 @@ function! ToggleWrap()
     unmap $
     let s:wrapenabled = 0
   else
+    highlight ColorColumn ctermbg=NONE
     set linebreak
     set wrap
+    set nolist
     nnoremap j gj
     nnoremap k gk
     nnoremap 0 g0
@@ -137,7 +169,19 @@ function! ToggleWrap()
     let s:wrapenabled = 1
   endif
 endfunction
-map <leader>w :call ToggleWrap()<CR>
+
+" Make 81th column stand out
+call matchadd('ColorColumn', '\%81v.', 100)
+
+" Shady characters
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+
+set nolinebreak
+set nowrap
+set list
+ 
+" Remove trailing whitespace on save
+"autocmd BufWritePre * %s/\s\+$//e
 
 " ==> MAPPING
 
@@ -180,13 +224,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
-" Start NERDTree when Vim starts with a directory argument.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-
 " ==> FZF Vim
 
 let g:fzf_layout = { 'down': '40%' }
 nnoremap <C-p> :<C-u>Files<CR>
-
