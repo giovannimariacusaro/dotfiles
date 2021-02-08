@@ -1,4 +1,3 @@
-
 " Giovanni Maria Cusaro's .vimrc - feel free to use!
 " Licence -  The code follows GNU License v3.0
 
@@ -178,9 +177,6 @@ exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set nolinebreak
 set nowrap
 set list
- 
-" Remove trailing whitespace on save
-"autocmd BufWritePre * %s/\s\+$//e
 
 " ==> MAPPING
 
@@ -197,8 +193,8 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " Useful mappings for spliting
-nnoremap <leader>v :vsplit<cr>
-nnoremap <leader>h :split<cr>
+noremap <silent> <leader>v :vsplit<cr>
+noremap <silent> <leader>h :split<cr>
 
 noremap <silent> <leader>+ :vertical resize +5<CR>
 noremap <silent> <leader>- :vertical resize -5<CR>
