@@ -75,6 +75,7 @@ set showmatch
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
+" Highlight line match
 function! HLNext (blinktime)
   set invcursorline
   redraw
@@ -86,14 +87,14 @@ endfunction
 " Stop highlighting
 nmap <esc><esc> :noh<return>
 
-"set linebreak
-
 " ==> TAB
 set splitbelow splitright
 set smartindent autoindent expandtab
 set shiftwidth=2 softtabstop=2 tabstop=2
 
 " ==> THEME
+
+set termguicolors
 colorscheme falcon
 
 " ==> LIGHTLINE
@@ -123,7 +124,6 @@ function! LightlineFilename()
 endfunction
 
 " ==> MISC
-
 " Jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -179,7 +179,6 @@ set nowrap
 set list
 
 " ==> MAPPING
-
 " Esc in insert mode
 inoremap jk <Esc>
 
@@ -207,11 +206,10 @@ map <Leader>th <C-w>t<C-w>K
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
 " ==> NERDTree
-
 let NERDTreeShowHidden = 1
 noremap <silent> <Leader>n :NERDTreeToggle<CR>
 
-  " Exit Vim if NERDTree is the only window left.
+" Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
@@ -220,6 +218,5 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " ==> FZF Vim
-
 let g:fzf_layout = { 'down': '40%' }
 nnoremap <C-p> :<C-u>Files<CR>
