@@ -35,7 +35,7 @@ fpath+=$HOME/.zsh/pure
 #unsetopt PROMPT_SP
 autoload -U promptinit; promptinit
 prompt pure
-PROMPT='%(?.%F{cyan}.%F{red}❯%F{red})▲%f '
+PROMPT='%(?.%F{cyan}.%F{red}❯%F{red})→%f '
 
 # Custom highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -49,8 +49,9 @@ alias zshconf="open ~/.zshrc"
 alias vimconf="open ~/.vimrc"
 alias t="touch"
 alias m="mkdir"
-alias lsh="lsd -la"
-alias ls="lsd -a"
 alias tr="tree"
 alias app="brew cu"
 alias s="spotify"
+alias ls="exa -a --icons"
+alias lsl="exa -a -l --icons"
+alias lst="exa -a -T --git-ignore --icons"
