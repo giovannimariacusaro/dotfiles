@@ -55,3 +55,4 @@ alias s="spotify"
 alias ls="exa -a --icons"
 alias lsl="exa -a -l --icons"
 alias lst="exa -a -T --git-ignore --icons"
+
