@@ -10,6 +10,7 @@ Plug 'fenetikm/falcon'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'kana/vim-surround'
 call plug#end()
 
 " ==> GENERAL
@@ -93,9 +94,8 @@ set smartindent autoindent expandtab
 set shiftwidth=2 softtabstop=2 tabstop=2
 
 " ==> THEME
-
-set termguicolors
 colorscheme falcon
+set background=dark termguicolors
 
 " ==> LIGHTLINE
 set cmdheight=2
