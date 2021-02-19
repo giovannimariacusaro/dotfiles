@@ -1,3 +1,4 @@
+
 # Giovanni Maria Cusaro's .zshrc - Feel free to use!
 
 # First turn off all beeps
@@ -19,7 +20,7 @@ ENABLE_CORRECTION="true"
 ZSH_DISABLE_COMPFIX="true"
 
 # my personal list
-plugins=(git osx ruby yarn z zsh_reload zsh-autosuggestions zsh-syntax-highlighting gatsby emoji brew web-search)
+plugins=(git osx ruby yarn z zsh_reload zsh-autosuggestions zsh-syntax-highlighting emoji brew web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,6 +32,7 @@ export EDITOR="$HOME/bin/mate -w"
 KEYTIMEOUT=0
 
 fpath+=$HOME/.zsh/pure
+
 # Custom PROMPT
 #unsetopt PROMPT_SP
 autoload -U promptinit; promptinit
@@ -44,15 +46,10 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Aliases
-alias ohmyconf="open ~/.oh-my-zsh"
-alias zshconf="open ~/.zshrc"
-alias vimconf="open ~/.vimrc"
 alias t="touch"
 alias m="mkdir"
-alias tr="tree"
-alias app="brew cu"
-alias s="spotify"
 alias ls="exa -a --icons"
 alias lsl="exa -a -l --icons"
 alias lst="exa -a -T --git-ignore --icons"
-
+alias app="brew cu"
+alias s="spotify"
